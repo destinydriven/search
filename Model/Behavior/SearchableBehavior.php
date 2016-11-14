@@ -409,7 +409,6 @@ class SearchableBehavior extends ModelBehavior {
 		$queryData = $this->_scrubQueryData($queryData);
 		$recursive = null;
 		$byPass = false;
-		$null = null;
 		$array = array();
 		$linkedModels = array();
 
@@ -447,14 +446,14 @@ class SearchableBehavior extends ModelBehavior {
 					if ($byPass) {
 						$assocData['fields'] = false;
 					}
-					if (true === $db->generateAssociationQuery($Model, $linkModel, $type, $assoc, $assocData, $queryData, $external, $null)) {
+					if (true === $db->generateAssociationQuery($Model, $linkModel, $type, $assoc, $assocData, $queryData, $external)) {
 						$linkedModels[$type . '/' . $assoc] = true;
 					}
 				}
 			}
 		}
 
-		return trim($db->generateAssociationQuery($Model, null, null, null, null, $queryData, false, $null));
+		return trim($db->generateAssociationQuery($Model, null, null, null, null, $queryData, false));
 	}
 
 /**
